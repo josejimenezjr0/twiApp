@@ -10,7 +10,7 @@ mongoose.connect(MONGODB_URI, {useNewUrlParser:true})
 // settings
 
 
-app.use(express.static(__dirname + '/twilightFun/dist/twilightFun'))
+app.use(express.static(__dirname + '/dist'))
 
 app.use(express.json())
 app.use(express.urlencoded({extended:true}));
