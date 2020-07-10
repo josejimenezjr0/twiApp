@@ -2,7 +2,10 @@ const express = require("express")
 const mongoose = require("mongoose")
 
 const app = express()
-mongoose.connect("mongodb://localhost/twilightApi", {userNewUrlParser:true})
+
+var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/twilightApi";
+
+mongoose.connect(MONGODB_URI, {userNewUrlParser:true})
 
 // settings
 
