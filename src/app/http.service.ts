@@ -11,7 +11,7 @@ export class HttpService {
   constructor(private _http: HttpClient) { }
 
   getFaction(id){
-    return this._http.get(`/faction/${id}`);
+    return this._http.get(`/factions/${id}`);
   }
 
   getAllFactions(){
