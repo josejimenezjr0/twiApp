@@ -1,30 +1,16 @@
 const express = require("express")
 const mongoose = require("mongoose")
-const mongodb = require("mongodb")
-
-require("dotenv").config();
-
 
 const app = express()
 
+const MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/twilightApi";
 
-const MONGOLAB_BLACK_URI = process.env.MONGOLAB_BLACK_URI || "mongodb://localhost/twilightApi";
+mongoose.connect(MONGODB_URI, {useNewUrlParser:true, useUnifiedTopology: true })
 
-const options = {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-    useCreateIndex: true,
-    useFindAndModify: false,
-    family: 4
-};
-
-mongoose.connect(MONGOLAB_BLACK_URI, options)
-
-// mongoose.connect(MONGODB_URI, {useNewUrlParser:true, useUnifiedTopology: true})
+// settings
 
 
-app.use(express.static(__dirname + '/dist/'));
-
+app.use(express.static(__dirname + '/dist/'))
 
 app.use(express.json())
 app.use(express.urlencoded({extended:true}));
@@ -32,7 +18,7 @@ app.use(express.urlencoded({extended:true}));
 require('./server/config/routes.js')(app);
 
 
-const server = app.listen(process.env.PORT || 1337, () => {
+const server = app.listen(process.env.PORT || 1337, function () {
     const port = server.address().port;
-    console.log(`listening on port ${port}. Twilight App!`)
+    console.log("App now running on port", port);
 })
